@@ -1,3 +1,12 @@
 base:
   random_state: 43
   test_size: 0.3
+
+model_params:
+  RandomForest:
+    params:
+      n_jobs: -1
+      max_depth: 5
+      n_estimators: 100
+      oob_score: True
+
