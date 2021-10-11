@@ -4,14 +4,14 @@ stages:
     cmd: python src/stage_01_load_data.py
     deps:
     - path: config/config.yaml
-      md5: 30f9ee685bcd13c5637cd076869ca4db
-      size: 216
+      md5: 7a6f85e27a7dd0ea8daaebe01c309532
+      size: 324
     - path: src/stage_01_load_data.py
       md5: 43b382b46277ce4a84a90ab2073d7a78
       size: 1078
     - path: src/utils/all_utils.py
-      md5: b7b98a8ccaf482daf21944f5e6f73520
-      size: 492
+      md5: 3144be97605bbca69dcffd288b48dd79
+      size: 898
     outs:
     - path: artifacts/raw_local_dir/data.csv
       md5: d646019d27c00893f7c640cfa03198cc
@@ -23,14 +23,14 @@ stages:
       md5: d646019d27c00893f7c640cfa03198cc
       size: 45073
     - path: config/config.yaml
-      md5: 30f9ee685bcd13c5637cd076869ca4db
-      size: 216
+      md5: 7a6f85e27a7dd0ea8daaebe01c309532
+      size: 324
     - path: src/stage_02_split_data.py
-      md5: 942a51ba6fea82be7825b0adb6a3f6b5
-      size: 1968
+      md5: 1112e3746eddeb29766bbc50ac5dbeed
+      size: 1972
     - path: src/utils/all_utils.py
-      md5: b7b98a8ccaf482daf21944f5e6f73520
-      size: 492
+      md5: 3144be97605bbca69dcffd288b48dd79
+      size: 898
     params:
       params.yaml:
         base.random_state: 43
