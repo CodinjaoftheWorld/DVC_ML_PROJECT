@@ -9,6 +9,12 @@ import joblib
 
 
 def train_data(config_path, params_path):
+    """this function is taking the training data from split_data_dir and train it on RandomForestClassifier. Model is saved at saved_model directory.
+
+    Args:
+        config_path (str): path to config.yaml file
+        params_path (str): path to params.yaml file
+    """
     config = read_yaml(config_path)
     params = read_yaml(params_path)
 

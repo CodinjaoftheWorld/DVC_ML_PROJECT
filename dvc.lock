@@ -7,11 +7,11 @@ stages:
       md5: 7a6f85e27a7dd0ea8daaebe01c309532
       size: 324
     - path: src/stage_01_load_data.py
-      md5: 43b382b46277ce4a84a90ab2073d7a78
-      size: 1078
+      md5: f4b5a8ed0fb66f5ed2859bed663e61b5
+      size: 1328
     - path: src/utils/all_utils.py
-      md5: 3144be97605bbca69dcffd288b48dd79
-      size: 898
+      md5: f68ab98544d54d2ae1765c21c48e57e6
+      size: 2221
     outs:
     - path: artifacts/raw_local_dir/data.csv
       md5: d646019d27c00893f7c640cfa03198cc
@@ -26,11 +26,11 @@ stages:
       md5: 7a6f85e27a7dd0ea8daaebe01c309532
       size: 324
     - path: src/stage_02_split_data.py
-      md5: 1112e3746eddeb29766bbc50ac5dbeed
-      size: 1972
+      md5: 6f4442df5336e708d0e22f7c947a4184
+      size: 2313
     - path: src/utils/all_utils.py
-      md5: 3144be97605bbca69dcffd288b48dd79
-      size: 898
+      md5: f68ab98544d54d2ae1765c21c48e57e6
+      size: 2221
     params:
       params.yaml:
         base.random_state: 43

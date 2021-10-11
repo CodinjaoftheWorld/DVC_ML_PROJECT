@@ -7,6 +7,12 @@ from sklearn.model_selection import train_test_split
 
 
 def split_data(config_path, params_path):
+    """this function is used to read the data from raw_local_dir and split the data in the train and test set and save it again at split_data_dir directory by accessing the paths from confg.yaml and params.yaml files.
+
+    Args:
+        config_path (str): path to config.yaml file
+        params_path (str): path to params.yaml file
+    """
     config = read_yaml(config_path)
     params = read_yaml(params_path)
 

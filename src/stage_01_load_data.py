@@ -6,6 +6,11 @@ import pandas as pd
 
 
 def get_data(config_path):
+    """this function is used to get the read the data from path mentioned in config.yaml file, save the data at artifacts/raw_local_dir
+
+    Args:
+        config_path (str): paths for reading the data and saving the data in config.yaml files
+    """
     config = read_yaml(config_path)
 
     # read data and create dataframe

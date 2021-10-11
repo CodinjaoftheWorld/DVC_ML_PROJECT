@@ -8,10 +8,14 @@ import joblib
 from sklearn.metrics import accuracy_score
 
 
-def evaluate_score():
-    pass
 
 def evaluate(config_path, params_path):
+    """this function takes the test data from slpit_data_dir, predict the labels and calculate the accuracy of the RFClassifier. Output of the model(accuracy) is saved at scores_dir in the form of json file.  
+
+    Args:
+        config_path (str): path to config.yaml file
+        params_path (str): path to params.yaml file
+    """
     config = read_yaml(config_path)
     params = read_yaml(params_path)
 
