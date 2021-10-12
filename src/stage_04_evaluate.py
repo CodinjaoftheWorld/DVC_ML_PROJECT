@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 from sklearn.metrics import accuracy_score
-
+import logging
 
 
 def evaluate(config_path, params_path):
@@ -45,6 +45,7 @@ def evaluate(config_path, params_path):
     scores_dir = config["artifacts"]["scores_dir"]
     scores_dir_path = os.path.join(artifacts_dir, scores_dir)
     create_directory([scores_dir_path])
+    logging.info(f"scores directory created")
 
     scores_filename = config["artifacts"]["scores_filename"]
     scores_file_path = os.path.join(scores_dir_path, scores_filename)
@@ -53,7 +54,7 @@ def evaluate(config_path, params_path):
 
     predicted_values = RFClassifier.predict(x_test.values)
     accuracy = evaluate_accuracy(y_test.values, predicted_values)
-    # print(accuracy)
+    logging.info(f"model evaluation complete: accuracy is {accuracy}")
 
     scores = {
         "accuracy": accuracy,
@@ -69,4 +70,10 @@ if __name__=="__main__":
 
     parsed_args = args.parse_args()
 
-    evaluate(config_path=parsed_args.config, params_path=parsed_args.params)
+    try:
+        logging.info(">>>>>>>>> Model Evaluation Started >>>>>>>>>")
+        evaluate(config_path=parsed_args.config, params_path=parsed_args.params)
+        logging.info("<<<<<<<<< Model Evaluation Complete <<<<<<<<<\n")
+    except Exception as e:
+        logging.exception(e)
+        raise e

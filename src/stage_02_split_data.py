@@ -4,7 +4,7 @@ import json
 import argparse
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
+import logging
 
 def split_data(config_path, params_path):
     """this function is used to read the data from raw_local_dir and split the data in the train and test set and save it again at split_data_dir directory by accessing the paths from confg.yaml and params.yaml files.
@@ -34,6 +34,7 @@ def split_data(config_path, params_path):
     split_data_dir = config["artifacts"]["split_data_dir"]
     split_data_dir_path = os.path.join(artifacts_dir, split_data_dir)
     create_directory([split_data_dir_path])
+    logging.info(f"split data directory created to save test and train sets")
 
     # access params
     split_ratio = params["base"]["test_size"]
@@ -51,6 +52,8 @@ def split_data(config_path, params_path):
     for dt, dt_path in (train, train_data_path), (test, test_data_path):
         save_data(dt, dt_path)
 
+    logging.info(f"test and train data saved at split_data_dir")
+
 if __name__=="__main__":
     args = argparse.ArgumentParser()
     
@@ -59,7 +62,12 @@ if __name__=="__main__":
 
     parsed_args = args.parse_args()
 
-    split_data(config_path=parsed_args.config, params_path=parsed_args.params)
-
+    try:
+        logging.info(">>>>>>>>> Data Spliting Started >>>>>>>>>")
+        split_data(config_path=parsed_args.config, params_path=parsed_args.params)
+        logging.info("<<<<<<<<< Data Spliting Complete <<<<<<<<<<<<\n")
+    except Exception as e:
+        logging.exception(e)
+        raise e
 
 

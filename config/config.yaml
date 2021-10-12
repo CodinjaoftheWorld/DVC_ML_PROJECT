@@ -11,7 +11,7 @@ artifacts:
   test: test.csv
 
   model_dir: model_dir
-  model_filename: saved_model
+  model_filename: saved_model.model
 
   scores_dir: scores_dir
   scores_filename: scores.json

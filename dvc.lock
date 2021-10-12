@@ -1,36 +1,36 @@
 schema: '2.0'
 stages:
   load_data:
-    cmd: python src/stage_01_load_data.py
+    cmd: python src/stage_01_load_data.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 7a6f85e27a7dd0ea8daaebe01c309532
-      size: 324
+      md5: 295d9e65be271e175e9669cc82e4e50e
+      size: 330
     - path: src/stage_01_load_data.py
-      md5: f4b5a8ed0fb66f5ed2859bed663e61b5
-      size: 1328
+      md5: a89fb9e06ca2259081d3b2df6234ce8e
+      size: 1646
     - path: src/utils/all_utils.py
-      md5: f68ab98544d54d2ae1765c21c48e57e6
-      size: 2221
+      md5: feb4680b68cdae615b097d5d5d1b8fcc
+      size: 2489
     outs:
     - path: artifacts/raw_local_dir/data.csv
       md5: d646019d27c00893f7c640cfa03198cc
       size: 45073
   save_data:
-    cmd: python src/stage_02_split_data.py
+    cmd: python src/stage_02_split_data.py --config=config/config.yaml --params=params.yaml
     deps:
     - path: artifacts/raw_local_dir/data.csv
       md5: d646019d27c00893f7c640cfa03198cc
       size: 45073
     - path: config/config.yaml
-      md5: 7a6f85e27a7dd0ea8daaebe01c309532
-      size: 324
+      md5: 295d9e65be271e175e9669cc82e4e50e
+      size: 330
     - path: src/stage_02_split_data.py
-      md5: 6f4442df5336e708d0e22f7c947a4184
-      size: 2313
+      md5: c49df6f1f5d498a7b5046a44e84dd7bc
+      size: 2693
     - path: src/utils/all_utils.py
-      md5: f68ab98544d54d2ae1765c21c48e57e6
-      size: 2221
+      md5: feb4680b68cdae615b097d5d5d1b8fcc
+      size: 2489
     params:
       params.yaml:
         base.random_state: 43
@@ -42,3 +42,29 @@ stages:
     - path: artifacts/split_data_dir/train.csv
       md5: 027a858eb7a7639e9a1352544a900c43
       size: 31510
+  train:
+    cmd: python src/stage_03_train.py --config=config/config.yaml --params=params.yaml
+    deps:
+    - path: artifacts/split_data_dir/train.csv
+      md5: 027a858eb7a7639e9a1352544a900c43
+      size: 31510
+    - path: config/config.yaml
+      md5: 295d9e65be271e175e9669cc82e4e50e
+      size: 330
+    - path: src/stage_03_train.py
+      md5: 6b1831a6ece035a62288489d79ef967e
+      size: 3006
+    - path: src/utils/all_utils.py
+      md5: feb4680b68cdae615b097d5d5d1b8fcc
+      size: 2489
+    params:
+      params.yaml:
+        base.random_state: 43
+        model_params.RandomForest.params.max_depth: 5
+        model_params.RandomForest.params.n_estimators: 100
+        model_params.RandomForest.params.n_jobs: -1
+        model_params.RandomForest.params.oob_score: true
+    outs:
+    - path: artifacts/model_dir/saved_model.model
+      md5: f6ee1fb291bdb6dc132768a4d3aa6580
+      size: 268653

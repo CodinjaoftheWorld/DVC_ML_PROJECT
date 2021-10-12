@@ -3,7 +3,13 @@ import yaml
 import csv
 import json
 from sklearn.metrics import accuracy_score
+import logging
 
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename = os.path.join(log_dir, "running_logs.log"), level=logging.INFO, format=logging_str, filemode='a')
 
 def read_yaml(path_to_yaml: str) -> dict:
     """this function access the parameters from config.yaml and params.yaml filesystem
@@ -63,4 +69,6 @@ def save_reports(report: dict, report_path: str, indentation=4):
     with open(report_path, "w") as f:
         json.dump(report, f, indent=indentation)
     print(f"reports are saved at {report_path}")  
+
+
 
